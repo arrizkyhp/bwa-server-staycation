@@ -8,7 +8,7 @@ const session = require('express-session');
 const flash = require("connect-flash");
 // import mongoose
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://127.0.0.1:27017/db_staycation");
+mongoose.connect("mongodb+srv://arrizkyhp:bwamern@cluster0.5rq9e.mongodb.net/db_staycation?retryWrites=true&w=majority");
 
 
 var indexRouter = require('./routes/index');
