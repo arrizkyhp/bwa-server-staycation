@@ -6,6 +6,7 @@ var logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require("connect-flash");
+const cors = require("cors");
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://arrizkyhp:bwamern@cluster0.5rq9e.mongodb.net/db_staycation?retryWrites=true&w=majority");
@@ -18,6 +19,7 @@ const adminRouter = require('./routes/admin');
 const apiRouter = require('./routes/api');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,6 +37,7 @@ app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/sb-admin-2", express.static(path.join(__dirname, "node_modules/startbootstrap-sb-admin-2")));
