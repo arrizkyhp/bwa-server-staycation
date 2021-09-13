@@ -1,0 +1,76 @@
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Invoice</th>
+                                        <th>Date</th>
+                                        <th>Title</th>
+                                        <th>Name</th>
+
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% booking.map((e, index) => { %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td>#<%= e.invoice %></td>
+                                        <td>
+                                            <h5><span class="badge bg-info text-light">
+                                                    <%= e.bookingStartDate.toLocaleString().split(',')[0] %></span>
+                                                <b>s/d</b>
+                                                <span
+                                                    class="badge bg-warning text-light"><%= e.bookingEndDate.toLocaleString().split(',')[0] %>
+                                                </span> </h5>
+                                        </td>
+                                        <td><%= e.itemId.title %></td>
+                                        <td><%= e.memberId.firstName %> <%= e.memberId.lastName %></td>
+
+                                        <% if( e.payments.status === "Proses") { %>
+                                        <td><span class="badge badge-warning">
+                                                <%= e.payments.status %>
+                                            </span></td>
+                                        <% } else if ( e.payments.status === "Accept" ) {%>
+                                        <td><span class="badge badge-success">
+                                                <%= e.payments.status %>
+                                            </span></td>
+                                        <% } else {%>
+                                        <td><span class="badge badge-danger">
+                                                <%= e.payments.status %>
+                                            </span></td>
+                                        <% } %>
+
+
+                                        <td>
+                                            <a href="/admin/booking/<%= e.id %>"
+                                                class="btn btn-success btn-circle btn-sm button-update">
+                                                <i class=" fas fa-eye"> </i>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    <% } ) %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Date</th>
+                                        <th>Title</th>
+                                        <th>Name</th>
+                                        <th>Bank Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>

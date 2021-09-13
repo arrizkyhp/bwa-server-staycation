@@ -1,0 +1,88 @@
+    <div class="tab-pane fade show active" id="show-feature" role="tabpanel" aria-labelledby="home-tab">
+        <div class="card shadow mb-4 mt-4">
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Qty</th>
+                                        <th>Image</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% feature.map((e, index) => { %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td><%= e.name %></td>
+                                        <td><%= e.qty %></td>
+                                        <td>
+                                            <img src="http://localhost:3000/<%= e.imageUrl %>"
+                                                alt="feature <%= e.name %>" width="40">
+                                        </td>
+                                        <td>
+                                            <form
+                                                action="/admin/item/<%= e.itemId %>/feature/<%= e.id %>?_method=DELETE"
+                                                method="POST">
+                                                <a class="btn btn-warning btn-circle btn-sm button-update"
+                                                    data-id="<%= e._id %>" data-name="<%= e.name %>"
+                                                    data-qty="<%= e.qty %>" type="button">
+                                                    <i class=" fas fa-edit"> </i>
+                                                </a>
+                                                <button type="submit" class="btn btn-danger btn-circle btn-sm">
+                                                    <i class=" fas fa-trash"> </i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% } ) %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Qty</th>
+                                        <th>Image</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <form action="/admin/item/add/feature" method="POST" enctype="multipart/form-data">
+
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Enter Name..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="qty">Quantity</label>
+                                <input type="number" class="form-control" id="qty" name="qty"
+                                    placeholder="Enter Quantity..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input type="file" class="form-control" id="image" name="image" required>
+                            </div>
+                            <input type="hidden" value="<%= itemId %>" name="itemId">
+
+
+                            <button type="submit" class="btn btn-primary">Add</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
